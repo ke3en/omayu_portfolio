@@ -11,12 +11,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'mouse-stalker'
-}
-</script>
-
 <script setup>
 import { onMounted } from "vue";
 import { useState } from "nuxt/app";

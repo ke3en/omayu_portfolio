@@ -1,5 +1,5 @@
 <template>
-    <div class="illustration-showcase__container js-is-in-view-target">
+    <div class="illustration-showcase__container">
         <div class="illustration-showcase__back clickable-back" @click="back" />
         <div class="illustration-showcase__next clickable-next" @click="next" />
         <div class="illustration-showcase__display">
@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import items from "@/assets/data/illustrationItems.js"
 
 const itemsWithSlotIdx = items.map((item, i) =>
@@ -30,7 +30,7 @@ const itemsWithSlotIdx = items.map((item, i) =>
     }
 })
 
-const wait = (sec: number): Promise<unknown> =>
+const wait = (sec) =>
 {
     return new Promise((resolve, reject) =>
     {
@@ -38,9 +38,9 @@ const wait = (sec: number): Promise<unknown> =>
     });
 };
 
-const increment = (x: number, delta: number = 1) => (x + delta) % itemsWithSlotIdx.length
-const decrement = (x: number, delta: number = 1) => (x - delta + itemsWithSlotIdx.length) % itemsWithSlotIdx.length
-const show = (pos: number) => (itemsWithSlotIdx.length + pos - idx.value) % itemsWithSlotIdx.length < 4
+const increment = (x, delta = 1) => (x + delta) % itemsWithSlotIdx.length
+const decrement = (x, delta = 1) => (x - delta + itemsWithSlotIdx.length) % itemsWithSlotIdx.length
+const show = (pos) => (itemsWithSlotIdx.length + pos - idx.value) % itemsWithSlotIdx.length < 4
 
 const idx = ref(0)
 const next = async () =>

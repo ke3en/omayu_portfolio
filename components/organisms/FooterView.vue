@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 const router = useRouter()
+const scrollTo = useState<string>('scrollTo', () => '')
 const smoother = useState<ScrollSmoother>('smoother')
 const year: number = new Date().getFullYear();
 
@@ -53,7 +54,8 @@ const webSite = {
   {
     if (router.currentRoute.value.path !== "/")
     {
-      await router.push({ path: "/", hash: "#web-site" });
+      scrollTo.value = "web-site";
+      await router.push("/");
     }
     else
     {
@@ -85,13 +87,14 @@ const competition = {
   {
     if (router.currentRoute.value.path !== "/")
     {
-      await router.push({ path: "/", hash: "#competition" });
+      scrollTo.value = "competition";
+      await router.push("/");
     }
     else
     {
       nextTick(() =>
       {
-        smoother.value.scrollTo('.competitions__title', false, "top 70%");
+        smoother.value?.scrollTo('#competition', false, "center center");
       });
     }
   }
@@ -104,7 +107,8 @@ const banner = {
   {
     if (router.currentRoute.value.path !== "/")
     {
-      await router.push({ path: "/", hash: "#banner" });
+      scrollTo.value = "banner";
+      await router.push("/");
     } else
     {
       nextTick(() =>
@@ -122,7 +126,8 @@ const illustration = {
   {
     if (router.currentRoute.value.path !== "/")
     {
-      await router.push({ path: "/", hash: "#illustration" });
+      scrollTo.value = "illustration";
+      await router.push("/");
     }
     nextTick(() =>
     {
@@ -147,7 +152,7 @@ a {
   position: relative;
   color: #101010;
   font: normal normal normal 16px/24px ZenKakuGothicNew;
-  @include xd-line-height(16px, 24px);
+  @include xd-line-spacing(16px, 24px, 4px, 3px);
   letter-spacing: 0.64px;
   width: 100vw;
   height: calc(100vh - 110px);
@@ -201,7 +206,7 @@ a {
 
   &__copy-right {
     font: normal normal normal 13px/19px ZenKakuGothicNew;
-    @include xd-line-height(13px, 19px);
+    @include xd-line-spacing(13px, 19px, 4px, 3px);
     letter-spacing: 0.52px;
     color: #101010;
   }
